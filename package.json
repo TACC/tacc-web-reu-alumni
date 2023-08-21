@@ -1,0 +1,24 @@
+{
+  "name": "tacc-web-reu-alumni",
+  "version": "1.0.0",
+  "description": "A utility to create markup for content blocks on REU Alumni page",
+  "devDependencies": {
+    "csvtojson": "^2.0.10",
+    "mustache": "^3.2.1",
+    "nps": "^5.10.0",
+    "shx": "^0.3.4"
+  },
+  "// scripts": {
+    "start": "Allow running `scripts` via `nps …` from `package-scripts.yml`",
+    "prebuild": "Delete then create output directory",
+    "build": "Build temporary data, then build final markup",
+    "postbuild": "Export final markup file, then run cleanup tasks"
+  },
+  "scripts": {
+    "start": "nps",
+    "prebuild": "nps setup",
+    "build": "nps build",
+    "postbuild": "nps clean report"
+  },
+  "license": "UNLICENSED"
+}
