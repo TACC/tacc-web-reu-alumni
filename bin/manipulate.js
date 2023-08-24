@@ -21,6 +21,9 @@ function format(entries) {
     entry.study_3 = convertToTitleCase(
       getStudy(entry.study_3, entry.study_3_other)
     );
+    entry.has_project = Boolean(entry.project_name || entry.project_url);
+    entry.project_text = entry.project_name || entry.project_url;
+    entry.must_sanitize_project_text = ! Boolean(entry.project_name);
   });
 
   return entries;
@@ -54,8 +57,15 @@ function convertToTitleCase(oldText) {
 }
 
 /** Wrap all data in a manner that mustache templates expect */
-function wrap(data) {
-  const newData = { entries: data };
+function wrap(data, years = []) {
+  const newData = { years: [] };
+
+  years.forEach( year => {
+    newData.years.push({
+      year: year,
+      entries: data.filter( d => d.year == year )
+    });
+  });
 
   return newData;
 }

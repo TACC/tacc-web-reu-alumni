@@ -17,8 +17,7 @@
   "scripts": {
     "start": "nps",
     "prebuild": "nps setup",
-    "build": "nps build",
-    "postbuild": "nps clean report"
+    "build": "nps build"
   },
   "license": "UNLICENSED"
 }

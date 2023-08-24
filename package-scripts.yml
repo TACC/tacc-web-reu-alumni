@@ -9,7 +9,8 @@ scripts:
     # FAQ:     Prefix temporary data with underscore, to identify them
     #          as temporary (also, add underscore pattern to `.gitignore`)
     # Via `csvtojson` convert data from `.csv` to `.json`
-  build:data: >-
+  build:data: nps build:data:2023 build:data:2014_2016
+  build:data:2023: >-
     csvtojson
     --noheader=false
     --headers='[
@@ -24,17 +25,35 @@ scripts:
       "project_name",
       "project_url"
     ]'
-    assets/participants.csv > assets/_participants.json
+    assets/participants-2023.csv > assets/_participants-2023.json
+  build:data:2014_2016: >-
+    csvtojson
+    --noheader=false
+    --headers='[
+      "year",
+      "first_name",
+      "last_name",
+      "study_1",
+      "institution",
+      "project_name",
+      "project_url"
+    ]'
+    assets/participants-2014_2016.csv > assets/_participants-2014_2016.json
 
   # Build final markup
     # Build all (`nps build:…`)
     # Import partial template(s) (`-p ….mustache`)
     # Apply data into template, then ouput to… (`….json ….mustache >`)
     # Final markup file (`….html`)
-  build:markup: >-
+  build:markup: nps build:markup:2023 build:markup:2014_2016
+  build:markup:2023: >-
     mustache
-    ./bin/manipulate-participants.js ./templates/participants.mustache >
-    ./dist/participants.html
+    ./bin/manipulate-participants-2023.js ./templates/participants.mustache >
+    ./dist/participants-2023.html
+  build:markup:2014_2016: >-
+    mustache
+    ./bin/manipulate-participants-2014_2016.js ./templates/participants.mustache >
+    ./dist/participants-2014_2016.html
 
   report: echo "Copy relevant markup from './dist/___.html"
 

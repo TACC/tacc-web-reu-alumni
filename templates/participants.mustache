@@ -1,5 +1,8 @@
-{{#entries}}
-<p><strong>{{first_name}} {{last_name}}</strong><br />
-{{study_1}}{{#study_3}}, Minor: {{study_3}}{{/study_3}} &mdash; {{institution}} | <a href="{{{project_url}}}" target="_blank">{{project_name}}</a></p>
+{{#years}}<!-- {{year}} -->
+
+{{#entries}}<p><strong>{{first_name}} {{last_name}}</strong><br />
+{{study_1}}{{#study_3}}, Minor: {{study_3}}{{/study_3}} &mdash; {{institution}}{{#has_project}} | {{/has_project}}{{#project_url}}<a href="{{{project_url}}}" target="_blank">{{/project_url}}{{^project_url}}<small>{{/project_url}}{{#must_sanitize_project_text}}{{{project_text}}}{{/must_sanitize_project_text}}{{^must_sanitize_project_text}}{{project_text}}{{/must_sanitize_project_text}}{{#project_url}}</a>{{/project_url}}{{^project_url}}</small>{{/project_url}}</p>
 
 {{/entries}}<!-- generated via https://github.com/TACC/tacc-web-epic-tables -->
+
+{{/years}}
